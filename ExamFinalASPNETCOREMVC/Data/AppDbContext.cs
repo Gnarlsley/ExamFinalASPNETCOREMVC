@@ -54,7 +54,7 @@ namespace ExamFinalASPNETCOREMVC.Data
             Id = 6,
             Name = "Hoverboard",
             Description = "Levitating skateboard for an effortless commute",
-            Price = 129.99
+            Price = 329.99
         },
         new Product
         {
