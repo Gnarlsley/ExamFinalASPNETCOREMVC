@@ -11,6 +11,7 @@ namespace ExamFinalASPNETCOREMVC.Controllers
         {
             _context = context;
         }
+
         public IActionResult Index(string searchString)
         {
             var products = _context.Products.AsQueryable();
@@ -19,6 +20,9 @@ namespace ExamFinalASPNETCOREMVC.Controllers
             {
                 products = products.Where(p => p.Name.Contains(searchString) || p.Description.Contains(searchString));
             }
+
+            ViewBag.Slug = searchString;
+
             return View(products.ToList());
         }
     }

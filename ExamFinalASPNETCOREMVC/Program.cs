@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ExamFinalASPNETCOREMVC.Data;
+using Microsoft.Identity.Client;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,7 +11,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ProductContext")));
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -26,9 +27,10 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
-    name: "product",
-    pattern: "products/{action=Index}/{id?}",
-    defaults: new { controller = "Product" });
+    name: "searchRoute",
+    pattern: "Products/{searchString?}",
+    defaults: new { controller = "Product", action = "Index"}
+);
 
 app.MapControllerRoute(
     name: "default",
