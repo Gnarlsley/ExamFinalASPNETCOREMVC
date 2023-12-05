@@ -76,5 +76,38 @@ namespace ExamFinalASPNETCOREMVC.Controllers
             // If ModelState is not valid, return to the edit view with validation errors
             return View(updatedProduct);
         }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var product = _context.Products.Find(id);
+
+            if (product == null)
+            {
+                // Redirect to the Edit view if the product is not found
+                return RedirectToAction("Edit");
+            }
+
+            return View(product);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var product = _context.Products.Find(id);
+
+            if (product == null)
+            {
+                // Redirect to the Edit view if the product is not found
+                return RedirectToAction("Edit");
+            }
+
+            _context.Products.Remove(product);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
     }
 }
