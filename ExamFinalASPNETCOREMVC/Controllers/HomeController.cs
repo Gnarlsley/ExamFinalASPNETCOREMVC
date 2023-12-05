@@ -22,12 +22,5 @@ namespace ExamFinalASPNETCOREMVC.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-        public IActionResult slugAction(string slug)
-        {
-            ViewBag.Slug = slug;
-
-            return View();
-        }
     }
 }
